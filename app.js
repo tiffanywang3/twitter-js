@@ -1,6 +1,13 @@
 var express = require('express');
 var app = express();
 var morgan = require('morgan');
+var swig = require('swig');
+app.engine('html', swig.renderFile);
+
+app.set('view engine', 'html');
+app.set('views', __dirname + '/views');
+
+swig.setDefaults({ cache: false });
 
 app.use(function(req,res,next){
 	//do logging here
@@ -12,7 +19,7 @@ app.use(function(req,res,next){
 
 
 app.get('/',function(req,res){
-	res.send('Welcome')
+	res.render( 'index', {title: 'Hall of Fame', people: people} );
 })
 
 app.get('/news',function(req,res){
@@ -28,14 +35,15 @@ app.get('/bye',function(req,res){
 })
 
 
-
-
-
 app.listen(3000)
 console.log('server listening')
 
 
+var people = [{name: 'Full'}, {name: 'Stacker'}, {name: 'Son'}];
 
+swig.renderFile(__dirname + '/views/index.html', people, function (err, output) {
+    console.log(output);
+});
 
 
 
