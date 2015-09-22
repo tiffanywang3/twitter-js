@@ -23,6 +23,10 @@ app.get('/hello',function(req,res){
 	res.send('Hello world')
 })
 
+app.get('/bye',function(req,res){
+	res.send('say bye ')
+})
+
 
 
 
