@@ -2,7 +2,8 @@ var _ = require('underscore');
 var data = [];
 
 var add = function (name, text) {
-  data.push({ name: name, text: text });
+  var id = data.length;
+  data.push({ name: name, text: text, id: id});
 };
 
 var list = function () {
@@ -35,4 +36,4 @@ for(var i=0; i<10; i++) {
   module.exports.add( getFakeName(), getFakeTweet() );
 }
 
-console.log(data);
+console.log(list());

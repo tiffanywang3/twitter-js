@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 var morgan = require('morgan');
 var swig = require('swig');
+var bodyParser = require('body-parser')
 
 var routes = require('./routes/');
 app.use('/', routes);
@@ -22,17 +23,8 @@ app.use(function(req,res,next){
   next();
 })
 // app.use(morgan('combined'));
-app.get('/', function(req,res){
-	if(req.path()){
-		res.sendFile(req.path(), function(err){
-			if(err){
-				console.log(err);
-			}
-		})
-	} else{
-		next();
-	}
-});
+
+
 
 
 // app.get('/',function(req,res){
