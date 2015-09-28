@@ -1,20 +1,26 @@
 var express = require('express');
 var app = express();
 var morgan = require('morgan');
-var swig = require('swig');
 var bodyParser = require('body-parser')
 
 var routes = require('./routes/');
 app.use('/', routes);
 
+//this sets up swig as our rendering engine
+//swig module
+//REWATCH REVIEW VIDEO!!!!! 
+//this happens once at the beginning
+var swig = require('swig');
+//when you are asked to render an html file use swig.renderFile ==> (response.render)
 app.engine('html', swig.renderFile);
-
 app.set('view engine', 'html');
+//how to find files (again), response.render('something')
+//--> /whatever/the/views/directory/is/something 
 app.set('views', __dirname + '/views');
 
 swig.setDefaults({ cache: false });
 
-
+//setting middleware
 
 app.use(function(req,res,next){
   //do logging here
